@@ -11,17 +11,15 @@ $(() => {
 	const loadSchedule = () => {
 		return JSON.parse(localStorage.getItem(storageKey));
 	};
-
+	/**
+	 * @param {{days: [string], timings: [string], slots: [{day: number, time: number, description: string}]}} data
+	 */
 	const saveSchedule = (data) => {
 		localStorage.setItem(storageKey, JSON.stringify(data));
 	};
 
 	if (!loadSchedule()) {
-		saveSchedule({
-			timings: [],
-			days: [],
-			slots: [],
-		});
+		saveSchedule({ days: [], slots: [], timings: [] });
 	}
 
 	const loadDaysIntoSelect = (schedule) => {
@@ -81,6 +79,10 @@ $(() => {
 
 		loadDaysIntoSelect(schedule);
 		loadTimesIntoSelect(schedule);
+	};
+
+	const clearSchedule = () => {
+		saveSchedule({ days: [], slots: [], timings: [] });
 	};
 
 	// Save new timings to Local
@@ -147,4 +149,11 @@ $(() => {
 	loadDaysIntoSelect(loadSchedule());
 	loadTimesIntoSelect(loadSchedule());
 	renderSchedule();
+
+	$('#clear-schedule').on('click', () => {
+		clearSchedule();
+		renderSchedule();
+		loadDaysIntoSelect(loadSchedule());
+		loadTimesIntoSelect(loadSchedule());
+	});
 });
