@@ -1,0 +1,43 @@
+extends layouts/app
+
+block content
+	.bg-gray
+		.container.p-4
+			h3 Add Times
+
+			form(action="")#timing-form.row
+				.form-group.col-10.pe-1
+					input#timing(type="text" name='timing' placeholder="e.g 8-10, 8AM" required).form-control.border.border-primary
+				.form-group.col-2.ps-1
+					button(type="submit").btn.themed.text-white.shadow Add 
+
+	.container.p-4
+		h3 Add Days
+		form(action="")#days-form.row
+			.form-group.col-10.pe-1
+				input#days(type="text" name='day' placeholder="e.g. Monday" required).form-control.border.border-primary
+			.form-group.col-2.ps-1
+				button(type="submit").btn.themed.text-white.shadow Add 
+
+	.container.p-4 
+		h3 Add/Edit Activity 
+		form(action="")#action-form.row
+			.form-group.col-6.col-sm-6
+				label(for="days-list") Select Day
+				select#days-list(name="day" required).form-control
+
+			.form-group.col-6.col-sm-6 
+				label(for="times-list") Select Time
+				select#times-list(name="timing" required).form-control
+
+			.form-group.col-12.mt-2
+				input#activity(type="text" name="activity" required).form-control
+
+			.form-group.mt-1.d-flex.justify-content-end
+				button(type="submit").btn.themed.text-white Add/Edit
+
+
+	.container#schedule-render
+	.container.mt-3
+		button.w-100.btn.themed Clear Schedule
+
